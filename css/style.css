@@ -1,4 +1,4 @@
-table#pot_table  {
+table#mapTable  {
     table-layout:fixed;
     padding: 0;
     overflow: hidden;
@@ -7,7 +7,7 @@ table#pot_table  {
     clear: both;
     border-collapse: separate;
 }
-#pot_table th {
+#mapTable th {
     white-space: normal;
     overflow:hidden;
     position: relative;
@@ -19,13 +19,13 @@ table#pot_table  {
 	border: 1px solid white;
 }
 
-#pot_table .state_name {
+#mapTable .state_name {
     font-weight: bold;
 	width: 5%;
 	padding: 0;
 }
 
-#pot_table p {
+#mapTable p {
 	display: block;
 	line-height: 1.5em;
 	margin: 0 auto;
@@ -36,44 +36,44 @@ table#pot_table  {
 	padding-left: 8px;
 }
 
-#pot_table svg .good path,
-#pot_table .good, #pot_table svg path.good {
+#mapTable svg .good path,
+#mapTable .good, #mapTable svg path.good {
     background-color: #7AB317;
     fill: #7AB317;
 }
-#pot_table svg .kinda_good path,
-#pot_table .kinda_good, #pot_table svg path.kinda_good {
+#mapTable svg .kinda_good path,
+#mapTable .kinda_good, #mapTable svg path.kinda_good {
     background-color: #CBE86B;
     fill: #CBE86B;
 }
-#pot_table .harsh, #pot_table svg path.harsh,
-#pot_table svg .harsh path,
-#pot_table .penalties {
+#mapTable .harsh, #mapTable svg path.harsh,
+#mapTable svg .harsh path,
+#mapTable .penalties {
 
 }
 
-#pot_table th {
+#mapTable th {
     font-weight: bold;
 	text-align: center;
 	padding: 0;
 
 }
-#pot_table th img {
+#mapTable th img {
     position:relative;
     bottom: 0px;
 }
 
-#pot_table svg path {
+#mapTable svg path {
     fill: #eeeeee;
 }
 
-#pot_table .svg_container {
+#mapTable .svg_container {
     position: relative;
     padding-bottom: 62%;
     height: 0;
     overflow: hidden;
 }
-#pot_table .svg_container svg {
+#mapTable .svg_container svg {
     position: absolute;
     top: 0;
     left: 0;
@@ -118,41 +118,41 @@ th:nth-of-type(1) {
     width: 5%!Important;
 }
 
-#pot_table thead th {
+#mapTable thead th {
     background: transparent;
 }
 @media only screen and (max-width: 480px) {
 
-    #pot_table,
+    #mapTable,
     tbody, 
     tr, 
-    #pot_table td, 
-    #pot_table th,
-    #pot_table tbody.state_name,
-    #pot_table td.good,
-    #pot_table td.kinda_good,
-    #pot_table td.not_good,
-    #pot_table td.harsh,
-    #pot_table td.penalties  { 
+    #mapTable td, 
+    #mapTable th,
+    #mapTable tbody.state_name,
+    #mapTable td.good,
+    #mapTable td.kinda_good,
+    #mapTable td.not_good,
+    #mapTable td.harsh,
+    #mapTable td.penalties  { 
         display: block !important; 
         background:none;
         width: 83%!important;
         border:0;
     }
 
-    table#pot_table {
+    table#mapTable {
         width: 26em !important;
     }
 
-    #pot_table {
+    #mapTable {
         table-layout: auto;
     }
 
-    #pot_table .svg_container {
+    #mapTable .svg_container {
         padding-bottom: 0; 
     }
 
-    #pot_table th {
+    #mapTable th {
 		border: none;
 		text-align: left;
 		font-weight: normal;
@@ -166,23 +166,23 @@ th:nth-of-type(1) {
     th:nth-of-type(3):before { content: "Medicinal: "; font-weight: bold; }
     th:nth-of-type(4):before { content: "Recreational: "; font-weight: bold;}
 	
-	#pot_table .state_name {
+	#mapTable .state_name {
 	    text-transform:uppercase;;
 	}
 
-    #pot_table tr {
+    #mapTable tr {
         padding-bottom: 5px;
         margin-bottom: 5px;
     }
 
-    #pot_table svg .good path,
-    #pot_table .good, #pot_table svg path.good {
+    #mapTable svg .good path,
+    #mapTable .good, #mapTable svg path.good {
     background-color: transparent;
         fill: transparent;
     }
     
-    #pot_table svg .kinda_good path,
-    #pot_table .kinda_good, #pot_table svg path.kinda_good {
+    #mapTable svg .kinda_good path,
+    #mapTable .kinda_good, #mapTable svg path.kinda_good {
         background-color: transparent;
         fill: transparent;
     }
@@ -191,12 +191,12 @@ th:nth-of-type(1) {
         background: #eee; 
     }
 
-    #pot_table thead,
-    #pot_table .mid_labels {
+    #mapTable thead,
+    #mapTable .mid_labels {
         display:none!important;
     }
 
-    #pot_table p {
+    #mapTable p {
         padding: 0;
 		margin: 0!important;
     }
