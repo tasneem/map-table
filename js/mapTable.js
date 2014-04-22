@@ -36,7 +36,7 @@ var makeTable = function(data) {
 
     for (i = 0; i < data.length; i++) {
         if (i === 10 || i === 20 || i === 30 || i === 40) {
-            table.append(jQuery(' <tr class="mid_labels"> <th> </th> <th> Ballot initiative </th> <th> Court decision </th> <th> Legislation </th> </tr> '));
+            table.append(jQuery(' <tr class="mid_labels"> <th> </th> <th> Ballot initiative </th> <th> Court decision </th> <th> Legislature </th> </tr> '));
         };
         var state = data[i];
         var tr = jQuery('<tr id="' + state.postal + '_row"></tr>');
@@ -49,20 +49,20 @@ var makeTable = function(data) {
                 '</th>'
         );
 
-        //add map view 1 aka ballot ** NEED TO REWRITE THIS through line 91 **
+        //add map view 1 aka legalization/bans ballot measure ** NEED TO REWRITE THIS through line 91 **
         data[i].ballot_class = 'none';
         if (state.ballot === 'yes') {
             data[i].ballot_class = 'yes';
         }
 
         tr.append(
-                '<th class="' + data[i].penalties_class + '"><p>' +
-                (state.decrimdetails !== '' ? state.decrimdetails : empty_text) +
+                '<th class="' + data[i].ballot_class + '"><p>' +
+                (state.details !== '' ? state.details : empty_text) +
                 '</p></th>'
         )
 
-        //add medicinal
-        data[i].medicinal_class = 'not_good';
+        //add legalization/bans by court decision
+        data[i].court_class = 'not_good';
         if (state.medicinalstatus === 'Possible') {
             data[i].medicinal_class = 'kinda_good';
         } else if (state.medicinalstatus === 'Yes') {
@@ -74,7 +74,7 @@ var makeTable = function(data) {
                 '</p></th>'
         )
 
-        //add recreational
+        //add legalization/bans by legislature
         data[i].recreational_class = 'not_good';
         if (state.recstatus === 'Possible') {
             data[i].recreational_class = 'kinda_good';
