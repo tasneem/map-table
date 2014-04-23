@@ -1,4 +1,4 @@
-var public_spreadsheet_url = "https://docs.google.com/spreadsheet/pub?key=0Aq7nL59nLsCMdDJxZUo4cFZaWGF5d0pSZU9XSE44NVE&single=true&gid=0&output=html";
+var public_spreadsheet_url = "https://docs.google.com/spreadsheet/pub?key=0Aq7nL59nLsCMdDJxZUo4cFZaWGF5d0pSZU9XSE44NVE&output=html";
 
 var set_class = function(state, map, css_class) {
     var svg = jQuery('#' + map + ' .' + state);
@@ -15,7 +15,7 @@ var set_map_classes = function(data) {
         if ( svg && svg.attr('class') && svg.attr('class').baseVal ) {
             set_class(state.postal, 'ballotMap', data[i].ballot_class);
             set_class(state.postal, 'courtMap', data[i].court_class);
-            set_class(state.postal, 'legislationMap', data[i].legislation_class);
+            set_class(state.postal, 'legislatureMap', data[i].legislature_class);
         } else {
             console.log(state.postal);
             setTimeout(set_map_classes(data), 2000);
@@ -49,10 +49,10 @@ var makeTable = function(data) {
                 '</th>'
         );
 
-        //add map view 1 aka legalization/bans ballot measure ** NEED TO REWRITE THIS through line 91 **
+        //add map view 1 aka legalization/bans ballot measure
         data[i].ballot_class = 'none';
         if (state.ballot === 'yes') {
-            data[i].ballot_class = 'yes';
+            data[i].ballot_class = 'ballot';
         }
 
         tr.append(
@@ -62,31 +62,30 @@ var makeTable = function(data) {
         )
 
         //add legalization/bans by court decision
-        data[i].court_class = 'not_good';
-        if (state.medicinalstatus === 'Possible') {
-            data[i].medicinal_class = 'kinda_good';
-        } else if (state.medicinalstatus === 'Yes') {
-            data[i].medicinal_class = 'good';
+        data[i].court_class = 'none';
+        if (state.court === 'yes') {
+            data[i].court_class = 'court';
         }
+
         tr.append(
-                '<th class="' + data[i].medicinal_class + '"><p>' +
-                (state.medicinaldetails !== '' ? state.medicinaldetails :  empty_text) +
+                '<th class="' + data[i].court_class + '"><p>' +
+                (state.details !== '' ? state.details :  empty_text) +
                 '</p></th>'
         )
 
         //add legalization/bans by legislature
-        data[i].recreational_class = 'not_good';
-        if (state.recstatus === 'Possible') {
-            data[i].recreational_class = 'kinda_good';
-        } else if (state.recstatus === 'Yes') {
-            data[i].recreational_class = 'good';
+        data[i].legislature_class = 'none';
+        if (state.legislature === 'yes') {
+            data[i].legislature_class = 'legislature';
         }
-        console.log(state.recdetails);
-        console.log(state.recdetails.replace(/ /, '') !== '');
-        console.log(state.recdetails.replace(/ /, '') !== '' ? state.recdetails : empty_text);
+
+      //  console.log(state.recdetails);
+      //  console.log(state.recdetails.replace(/ /, '') !== '');
+      //  console.log(state.recdetails.replace(/ /, '') !== '' ? state.recdetails : empty_text);
+
         tr.append(
-                '<th class="' + data[i].recreational_class + '"><p>' +
-                (state.recdetails.replace(/ /, '') !== '' ? state.recdetails : empty_text) +
+                '<th class="' + data[i].legislature_class + '"><p>' +
+                (state.details.replace(/ /, '') !== '' ? state.details : empty_text) +
                 '</p></th>'
         )
 
