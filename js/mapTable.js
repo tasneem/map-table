@@ -5,6 +5,7 @@ var set_class = function(state, map, css_class) {
     svg.attr('class').baseVal = state + ' ' + css_class;
 }
 
+//make table header row with SVG maps
 var set_map_classes = function(data) {
     for (i = 0; i < data.length; i++) {
         var state = data[i];
@@ -25,7 +26,46 @@ var set_map_classes = function(data) {
     }
 }
 
+//make table cells with laws
 var makeTable = function(data) {
+
+    //load Dust.js template
+    var template = '{#allStates}\
+                        {usstate=.}\
+                        <tr>\
+                            {#allLawTypes lawType=.}\
+                                <td>{name}\
+                                    {#isXinY x=name y=.}\
+                                        {usstate.details}\
+                                    {/isXinY}\
+                                </td>\
+                            {/allLawTypes}\
+                        </tr>\
+                    {/allStates}';
+
+    var compiledTemplate = dust.compile(template, "tableRow");
+    dust.loadSource(compiledTemplate);
+
+    var renderableData = {
+        //write Dust.js helper to check if there's a 'yes' under each lawType
+        isXinY: function(chunk, context, bodies, params){
+            if (params.x[params.y]) return chunk.write(params.y.details);
+            console.log(params.x, params.y);
+        },
+        //load state law data
+        allStates: data,
+        allLawTypes: [
+            { name: "ballot" },
+            { name: "court" },
+            { name: "legislature" }
+        ]
+    };
+
+    dust.render("tableRow", renderableData, function(err, out) {
+      console.log(out, err)
+      //ul.append($(out));
+    });
+
     var table = jQuery('#mapTable');
     var select = jQuery('#jump_to_state select');
     var empty_text = '<span class="inline_label">Not at the moment</span>';
