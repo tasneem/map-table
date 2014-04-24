@@ -108,16 +108,11 @@ var makeTable = function(data) {
         });
     });
 
-//    for (i = 0; i < data.length; i++) {
-        //if (i === 10 || i === 20 || i === 30 || i === 40) {
-        //    table.append(jQuery(' <tr class="mid_labels"> <th> </th> <th> Ballot initiative </th> <th> Court decision </th> <th> Legislature </th> </tr> '));
-        //};
-//    }
-
     set_map_classes(data);
 
 }
 
+//REQUIRE A CALL BEFORE TABLETOP INIT STARTS
 Tabletop.init( { 
     proxy : 'https://s3.amazonaws.com/mj-tabletop-proxy',
     key: public_spreadsheet_url, callback: makeTable, simpleSheet: true,
