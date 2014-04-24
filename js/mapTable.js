@@ -29,29 +29,45 @@ var set_map_classes = function(data) {
 //make table cells with laws
 var makeTable = function(data) {
 
-    //load Dust.js template
-    var template = '{#allStates}\
-                        {usstate=.}\
-                        <tr>\
-                            {#allLawTypes lawType=.}\
-                                <td>{name}\
-                                    {#isXinY x=name y=.}\
-                                        {usstate.details}\
-                                    {/isXinY}\
-                                </td>\
+//write a Dust.js template for data table
+    var tableBody = '{#allStates}\
+                        {! write conditional statement to add law labels every 10 rows !}\
+                        {@if cond="( {$idx} == 10 || {$idx} == 20 || {$idx} == 30 || {$idx} == 40 )"}\
+                            <tr class="mid_labels">\
+                                <th> </th>\
+                                <th>Ballot initiative</th>\
+                                <th>Court decision</th>\
+                                <th>Legislative action</th>\
+                            </tr>\
+                        {/if}\
+                        <tr id={postal}_row>\
+                            <th id=state_name>\
+                                {state}\
+                            </th>\
+                            {#allLawTypes state=state}\
+                                {#getLawDetails law=name state=state}\
+                                {/getLawDetails}\
                             {/allLawTypes}\
                         </tr>\
                     {/allStates}';
 
-    var compiledTemplate = dust.compile(template, "tableRow");
-    dust.loadSource(compiledTemplate);
+    //compile above Dust template
+    var compiledTableBody = dust.compile(tableBody, "tableRow");
+    dust.loadSource(compiledTableBody);
 
+    //grab Data
     var renderableData = {
-        //write Dust.js helper to check if there's a 'yes' under each lawType
-        isXinY: function(chunk, context, bodies, params){
-            if (params.x[params.y]) return chunk.write(params.y.details);
-            console.log(params.x, params.y);
+
+        //write Dust.js helper to check if there's a 'yes' under each lawType, and if so return the details
+        getLawDetails: function(chunk, context, bodies, params){
+            var state = _.find(data, function(row) { 
+                //return the first row where the state name of the row is the same as the param that we passed in for state
+                return(row.state === params.state);
+            });
+            if (state[params.law]) return chunk.write('<th class="' + params.law + '"><p>' + state.details + '</p></th>');
+            return chunk.write('<th><span class="inline_label">Not at the moment</span></th>');
         },
+
         //load state law data
         allStates: data,
         allLawTypes: [
@@ -61,76 +77,43 @@ var makeTable = function(data) {
         ]
     };
 
+    //render dust template as HTML
     dust.render("tableRow", renderableData, function(err, out) {
-      console.log(out, err)
-      //ul.append($(out));
+        //add dust template output into table as jQuery html
+        $('#mapTable').append($(out));
     });
 
-    var table = jQuery('#mapTable');
-    var select = jQuery('#jump_to_state select');
-    var empty_text = '<span class="inline_label">Not at the moment</span>';
-    select.change(function() {
-        window.location.hash = select.val() + '_row';
-        return false;
+//build state drop down menu with Dust template
+    var select = '<select>\
+                    <option value=""> Jump to a state:</option>\
+                    {#allStates}\
+                        <option value="{postal}">\
+                            {state}\
+                        </option>\
+                    {/allStates}\
+                 </select>';
+
+    //compile drop down menu Dust template
+    var compiledSelect = dust.compile(select, "select");
+    dust.loadSource(compiledSelect);
+
+    //render dust template drop down as HTML
+    dust.render("select", renderableData, function(err, out) {
+        //add dust template output into select tag as jQuery html
+        var selectEl = $(out);
+        $('#jump_to_state').append(selectEl);
+        selectEl.change(function() {
+            window.location.hash = select.val() + '_row';
+            return false;
+        });
     });
 
-    for (i = 0; i < data.length; i++) {
-        if (i === 10 || i === 20 || i === 30 || i === 40) {
-            table.append(jQuery(' <tr class="mid_labels"> <th> </th> <th> Ballot initiative </th> <th> Court decision </th> <th> Legislature </th> </tr> '));
-        };
-        var state = data[i];
-        var tr = jQuery('<tr id="' + state.postal + '_row"></tr>');
-        select.append('<option value="' + state.postal + '">' + state.state + '</option>');
+//    for (i = 0; i < data.length; i++) {
+        //if (i === 10 || i === 20 || i === 30 || i === 40) {
+        //    table.append(jQuery(' <tr class="mid_labels"> <th> </th> <th> Ballot initiative </th> <th> Court decision </th> <th> Legislature </th> </tr> '));
+        //};
+//    }
 
-        //add state name
-        tr.append(
-                '<th class="state_name">' +
-                    state.state +
-                '</th>'
-        );
-
-        //add map view 1 aka legalization/bans ballot measure
-        data[i].ballot_class = 'none';
-        if (state.ballot === 'yes') {
-            data[i].ballot_class = 'ballot';
-        }
-
-        tr.append(
-                '<th class="' + data[i].ballot_class + '"><p>' +
-                (state.details !== '' ? state.details : empty_text) +
-                '</p></th>'
-        )
-
-        //add legalization/bans by court decision
-        data[i].court_class = 'none';
-        if (state.court === 'yes') {
-            data[i].court_class = 'court';
-        }
-
-        tr.append(
-                '<th class="' + data[i].court_class + '"><p>' +
-                (state.details !== '' ? state.details :  empty_text) +
-                '</p></th>'
-        )
-
-        //add legalization/bans by legislature
-        data[i].legislature_class = 'none';
-        if (state.legislature === 'yes') {
-            data[i].legislature_class = 'legislature';
-        }
-
-      //  console.log(state.recdetails);
-      //  console.log(state.recdetails.replace(/ /, '') !== '');
-      //  console.log(state.recdetails.replace(/ /, '') !== '' ? state.recdetails : empty_text);
-
-        tr.append(
-                '<th class="' + data[i].legislature_class + '"><p>' +
-                (state.details.replace(/ /, '') !== '' ? state.details : empty_text) +
-                '</p></th>'
-        )
-
-        table.append(tr);
-    }
     set_map_classes(data);
 
 }
