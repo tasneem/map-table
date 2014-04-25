@@ -1,0 +1,9 @@
+#mapTable svg .ballot {
+  fill: #FF0000;
+}
+#mapTable svg .court {
+  fill: #00FF00;
+}
+#mapTable svg .legislature {
+  fill: #0000FF;
+}
