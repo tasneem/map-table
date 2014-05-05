@@ -2,7 +2,7 @@ var public_spreadsheet_url = "https://docs.google.com/spreadsheet/pub?key=0Aq7nL
 
 var mapRow = '<thead>\
                      <tr>\
-                       <th>What\'s blocking gay marrage in my state</th>\
+                       <th>Why it\'s complicated:</th>\
                      </th>\
                      <th>\
                       Ballot initiative\
@@ -16,7 +16,7 @@ var mapRow = '<thead>\
                    </tr>\
                    <tr>\
                      <th>\
-                      <img src="http://assets.motherjones.com/interactives/projects/2014/2/potLaws/legend.jpg" />\
+                      <img src="" />\
                      </th>\
                   {#allMapColumns}\
                      <th>\
@@ -102,7 +102,7 @@ var makeTable = function(data) {
                             </tr>\
                         {/if}\
                         <tr id={postal}_row>\
-                            <th id=state_name>\
+                            <th class=state_name>\
                                 {state}\
                             </th>\
                             {#allMapColumns state=state}\
@@ -145,7 +145,7 @@ var makeTable = function(data) {
         allStates: data,
         allMapColumns: [
             { column: "ballot" },
-            { column: "court" },
+            { column: "courtLimbo" },
             { column: "legislature" }
         ]
     };

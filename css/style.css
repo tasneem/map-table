@@ -1,4 +1,4 @@
-table#mapTable  {
+table#mapTable {
     table-layout:fixed;
     padding: 0;
     overflow: hidden;
@@ -6,34 +6,38 @@ table#mapTable  {
 	margin-right: 0;
     clear: both;
     border-collapse: separate;
+    font-family: Helvetica, sans-serif;
 }
+
 #mapTable th {
     white-space: normal;
     overflow:hidden;
     position: relative;
-	background-color: #EEEEEE;
-	text-align: center;
-	padding: 3px;
 	width: 30%;
-	font-size: .9em;
-	border: 1px solid white;
+	font-size: 12px;
+    padding: 0;
 }
 
 #mapTable .state_name {
-    font-weight: bold;
-	width: 5%;
-	padding: 0;
+    width: 5%;
+    padding: 3px;
+    text-align: right;
+    color: #4292c6;
+    background: transparent;
 }
 
 #mapTable p {
 	display: block;
-	line-height: 1.5em;
 	margin: 0 auto;
 	text-transform: none;
 	font-weight: normal;
-	padding: 3px;
+	padding: 3px 3px 3px 8px;
 	text-align: left;
-	padding-left: 8px;
+    color: #413D3D;
+}
+
+#mapTable tr:hover, #mapTable tr:active {
+    background: #f7f7f7;
 }
 
 #mapTable svg .good path,
@@ -41,23 +45,18 @@ table#mapTable  {
     background-color: #7AB317;
     fill: #7AB317;
 }
+
 #mapTable svg .kinda_good path,
 #mapTable .kinda_good, #mapTable svg path.kinda_good {
     background-color: #CBE86B;
     fill: #CBE86B;
 }
+
 #mapTable .harsh, #mapTable svg path.harsh,
 #mapTable svg .harsh path,
 #mapTable .penalties {
-
 }
 
-#mapTable th {
-    font-weight: bold;
-	text-align: center;
-	padding: 0;
-
-}
 #mapTable th img {
     position:relative;
     bottom: 0px;
@@ -74,11 +73,11 @@ table#mapTable  {
     overflow: hidden;
 }
 #mapTable .svg_container svg {
-    position: absolute;
+/*  position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    left: 0; */
+    width: 75%;
+    height: 75%;
 }
 
 /*
@@ -161,13 +160,14 @@ th:nth-of-type(1) {
 		padding: 5px!important;
 		margin-bottom: 0px;
     }
-    th:nth-of-type(1):before { content: "State: "; font-weight: bold; }
     th:nth-of-type(2):before { content: "Reduced Penalties? "; font-weight: bold; }
     th:nth-of-type(3):before { content: "Medicinal: "; font-weight: bold; }
     th:nth-of-type(4):before { content: "Recreational: "; font-weight: bold;}
 	
 	#mapTable .state_name {
-	    text-transform:uppercase;;
+        font-weight: bold;
+	    text-transform:uppercase;
+        text-align:left;
 	}
 
     #mapTable tr {
