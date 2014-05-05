@@ -1,23 +1,14 @@
 var public_spreadsheet_url = "https://docs.google.com/spreadsheet/pub?key=0Aq7nL59nLsCMdDJxZUo4cFZaWGF5d0pSZU9XSE44NVE&output=html";
 
 var mapRow = '<thead>\
-                     <tr>\
-                       <th>Why it\'s complicated:</th>\
-                     </th>\
-                     <th>\
-                      Ballot initiative\
-                     </th>\
-                     <th>\
-                      Court decision\
-                     </th>\
-                     <th>\
-                      Legislature\
-                     </th>\
-                   </tr>\
-                   <tr>\
-                     <th>\
-                      <img src="" />\
-                     </th>\
+                  <tr class="freeze_header">\
+                     <th>Why it\'s complicated:</th>\
+                     <th>Ballot initiative</th>\
+                     <th>Court decision</th>\
+                     <th>Legislature</th>\
+                  </tr>\
+                  <tr class="freeze_maps">\
+                     <th><img src="" /></th>\
                   {#allMapColumns}\
                      <th>\
                       <div class="svg_container">\
@@ -91,7 +82,8 @@ dust.loadSource(compiledMapRow);
 var makeTable = function(data) {
 
 //write a Dust.js template for data table
-    var tableBody = '{#allStates}\
+    var tableBody = '<tbody class="stateRows">\
+                        {#allStates}\
                         {! write conditional statement to add law labels every 10 rows !}\
                         {@if cond="( {$idx} == 10 || {$idx} == 20 || {$idx} == 30 || {$idx} == 40 )"}\
                             <tr class="mid_labels">\
@@ -110,7 +102,8 @@ var makeTable = function(data) {
                                 {/getDetails}\
                             {/allMapColumns}\
                         </tr>\
-                    {/allStates}';
+                    {/allStates}\
+                    </tbody>';
 
     //compile above Dust template
     var compiledTableBody = dust.compile(tableBody, "tableRow");
@@ -145,7 +138,7 @@ var makeTable = function(data) {
         allStates: data,
         allMapColumns: [
             { column: "ballot" },
-            { column: "courtLimbo" },
+            { column: "courtlimbo" },
             { column: "legislature" }
         ]
     };
