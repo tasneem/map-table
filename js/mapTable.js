@@ -2,10 +2,10 @@ var public_spreadsheet_url = "https://docs.google.com/spreadsheet/pub?key=0Aq7nL
 
 var mapRow = '<thead>\
                   <tr class="freeze_header">\
-                     <th>Why it\'s complicated:</th>\
-                     <th>Ballot initiative</th>\
-                     <th>Court decision</th>\
-                     <th>Legislature</th>\
+                     <th></th>\
+                     <th>Constitutional amendment</th>\
+                     <th>Court action</th>\
+                     <th>Legislative action</th>\
                   </tr>\
                   <tr class="freeze_maps">\
                      <th><img src="" /></th>\
@@ -88,8 +88,8 @@ var makeTable = function(data) {
                         {@if cond="( {$idx} == 10 || {$idx} == 20 || {$idx} == 30 || {$idx} == 40 )"}\
                             <tr class="mid_labels">\
                                 <th> </th>\
-                                <th>Ballot initiative</th>\
-                                <th>Court decision</th>\
+                                <th>Constitutional amendment</th>\
+                                <th>Court action</th>\
                                 <th>Legislative action</th>\
                             </tr>\
                         {/if}\
@@ -137,9 +137,9 @@ var makeTable = function(data) {
         //load state law data
         allStates: data,
         allMapColumns: [
-            { column: "ballot" },
-            { column: "courtlimbo" },
-            { column: "legislature" }
+            { column: "constitutionalamendment" },
+            { column: "courts" },
+            { column: "statelaw" }
         ]
     };
 

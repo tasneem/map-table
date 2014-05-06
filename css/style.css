@@ -9,17 +9,17 @@ table#mapTable {
     font-family: Helvetica, sans-serif;
 }
 
-#mapTable thead th {
-    background: #ffffff;
-}
-
 #mapTable th {
     white-space: normal;
     overflow:hidden;
     position: relative;
-	width: 30%;
+	width: 31%;
 	font-size: 12px;
     padding: 0;
+}
+
+#mapTable thead th {
+    background: #ffffff;
 }
 
 #mapTable .state_name {
@@ -27,20 +27,20 @@ table#mapTable {
     padding: 3px;
     text-align: right;
     color: #4292c6;
-    background: transparent;
 }
 
 #mapTable p {
-	display: block;
+	display: table-cell;
 	margin: 0 auto;
 	text-transform: none;
 	font-weight: normal;
 	padding: 3px 3px 3px 8px;
 	text-align: left;
     color: #413D3D;
+    word-break: break-word;
 }
 
-#mapTable tr:hover, #mapTable tr:active {
+#mapTable tr:hover {
     background: #f7f7f7;
 }
 
@@ -77,11 +77,17 @@ table#mapTable {
     overflow: hidden;
 }
 #mapTable .svg_container svg {
-/*  position: absolute;
-    top: 0;
-    left: 0; */
     width: 75%;
     height: 75%;
+}
+
+.inline_label {
+    display:none;
+}
+
+th:nth-of-type(1) { 
+    display:table-cell;
+    width: 5%!Important;
 }
 
 /*
@@ -98,7 +104,7 @@ table#mapTable {
     text-align: center;
     color: #333315;
     width: 11.4em;
-	font-family: verdana;
+    font-family: verdana;
 
 }
 
@@ -111,15 +117,6 @@ table#mapTable {
     margin-bottom: 1.5em;
 }
 */
-
-.inline_label {
-    display:none;
-}
-
-th:nth-of-type(1) { 
-    display:table-cell;
-    width: 5%!Important;
-}
 
 @media only screen and (max-width: 480px) {
 
