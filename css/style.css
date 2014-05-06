@@ -44,23 +44,6 @@ table#mapTable {
     background: #f7f7f7;
 }
 
-#mapTable svg .good path,
-#mapTable .good, #mapTable svg path.good {
-    background-color: #7AB317;
-    fill: #7AB317;
-}
-
-#mapTable svg .kinda_good path,
-#mapTable .kinda_good, #mapTable svg path.kinda_good {
-    background-color: #CBE86B;
-    fill: #CBE86B;
-}
-
-#mapTable .harsh, #mapTable svg path.harsh,
-#mapTable svg .harsh path,
-#mapTable .penalties {
-}
-
 #mapTable th img {
     position:relative;
     bottom: 0px;

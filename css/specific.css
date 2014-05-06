@@ -1,9 +1,13 @@
-#mapTable svg .ballot {
-  fill: #4292c6;
+#mapTable svg .legal, #mapTable .legal {
+  fill: #d9ef8b;
+  background: #d9ef8b;
 }
-#mapTable svg .courtlimbo {
-  fill: #4292c6;
+#mapTable svg .banned, #mapTable .banned {
+  fill: #fee08b;
+  background: #fee08b;
 }
-#mapTable svg .legislature {
-  fill: #4292c6;
+
+#mapTable svg .limbo, #mapTable .limbo {
+  fill: #cccccc;
+  background: #cccccc;
 }
