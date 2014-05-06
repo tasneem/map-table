@@ -1,13 +1,19 @@
 #mapTable svg .legal, #mapTable .legal {
-  fill: #d9ef8b;
-  background: #d9ef8b;
+  fill: #abdda4;
+  background: #abdda4;
 }
 #mapTable svg .banned, #mapTable .banned {
-  fill: #fee08b;
-  background: #fee08b;
+  fill: #fdae61;
+  background: #fdae61;
 }
 
 #mapTable svg .limbo, #mapTable .limbo {
   fill: #cccccc;
   background: #cccccc;
 }
+
+#mapTable svg .bannedstrong, #mapTable .bannedstrong {
+  fill: #f46d43;
+  background: #f46d43;
+}
+

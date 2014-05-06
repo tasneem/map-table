@@ -6,7 +6,8 @@ var mapRow = '<thead>\
                      <th>Constitutional amendment</th>\
                      <th>Court action</th>\
                      <th>Legislative action</th>\
-                  </tr>\
+                     <th>Popular vote</th>\
+                     </tr>\
                   <tr class="freeze_maps">\
                      <th><img src="" /></th>\
                   {#allMapColumns}\
@@ -91,6 +92,7 @@ var makeTable = function(data) {
                                 <th>Constitutional amendment</th>\
                                 <th>Court action</th>\
                                 <th>Legislative action</th>\
+                                <th>Popular vote</th>\
                             </tr>\
                         {/if}\
                         <tr id={postal}_row>\
@@ -139,7 +141,8 @@ var makeTable = function(data) {
         allMapColumns: [
             { column: "constitutionalamendment" },
             { column: "courts" },
-            { column: "statelaw" }
+            { column: "statelaw" },
+            { column: "popularvote"}
         ]
     };
 
