@@ -26,7 +26,7 @@ table#mapTable {
     width: 5%;
     padding: 3px;
     text-align: right;
-    color: #4292c6;
+    color: #222222;
 }
 
 #mapTable p {
@@ -109,11 +109,10 @@ th:nth-of-type(1) {
     #mapTable td, 
     #mapTable th,
     #mapTable tbody.state_name,
-    #mapTable td.good,
-    #mapTable td.kinda_good,
-    #mapTable td.not_good,
-    #mapTable td.harsh,
-    #mapTable td.penalties  { 
+    #mapTable th.legal,
+    #mapTable th.banned,
+    #mapTable th.limbo,
+    #mapTable th.bannedstrong { 
         display: block !important; 
         background:none;
         width: 83%!important;
@@ -142,9 +141,10 @@ th:nth-of-type(1) {
 		margin-bottom: 0px;
     }
 
-    th:nth-of-type(2):before { content: "Reduced Penalties? "; font-weight: bold; }
-    th:nth-of-type(3):before { content: "Medicinal: "; font-weight: bold; }
-    th:nth-of-type(4):before { content: "Recreational: "; font-weight: bold;}
+    th:nth-of-type(2):before { content: "Constitutional amendment:"; font-weight: bold; color: #888; }
+    th:nth-of-type(3):before { content: "Court action: "; font-weight: bold; color: #888; }
+    th:nth-of-type(4):before { content: "Legislative action: "; font-weight: bold; color: #888; }
+    th:nth-of-type(5):before { content: "Popular vote: "; font-weight: bold; color: #888; }
 	
 	#mapTable .state_name {
         font-weight: bold;
@@ -157,20 +157,16 @@ th:nth-of-type(1) {
         margin-bottom: 5px;
     }
 
-    #mapTable svg .good path,
-    #mapTable .good, #mapTable svg path.good {
+    #mapTable svg .legal, 
+    #mapTable svg .banned,
+    #mapTable svg .limbo,
+    #mapTable svg .bannedstrong {
     background-color: transparent;
-        fill: transparent;
-    }
-    
-    #mapTable svg .kinda_good path,
-    #mapTable .kinda_good, #mapTable svg path.kinda_good {
-        background-color: transparent;
         fill: transparent;
     }
 
     tr:nth-of-type(odd) { 
-        background: #eee; 
+        background: #f7f7f7; 
     }
 
     #mapTable thead,
