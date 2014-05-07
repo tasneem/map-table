@@ -122,13 +122,13 @@ var makeTable = function(data) {
             });
 
             if(params.column === 'conamendment' && state.conamendment){
-              return chunk.write('<th class="' + state.status + '"><p>' + state.amendmentdetails + '</p></th>');
+              return chunk.write('<th class="' + state.status + '"><p>' + state.conamendmentdetails + '</p></th>');
             } else if(state[params.column]) {
               return chunk.write('<th class="' + state.status + '"><p>' + state.details + '</p></th>');
             } else {
-              return chunk.write ('<th><span class="inline_label">Not at the moment</span></th>');
+              return chunk.write('<th><span class="inline_label">Not at the moment</span></th>');
             }
-        }
+        },
 
         getMapClass: function(chunk, context, bodies, params){
             // params.law == this is the lawtype
@@ -143,7 +143,7 @@ var makeTable = function(data) {
             } else {
               return chunk.write('');
             }
-        }
+        },
         //load state law data
         allStates: data,
         allMapColumns: [
