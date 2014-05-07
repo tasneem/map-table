@@ -120,22 +120,30 @@ var makeTable = function(data) {
                 //return the first row where the state name of the row is the same as the param that we passed in for state
                 return(row.state === params.state);
             });
-            if (state[params.column]) return chunk.write('<th class="' + state.status + '"><p>' + state.details + '</p></th>');
-            return chunk.write('<th><span class="inline_label">Not at the moment</span></th>');
-        },
+
+            if(params.column === 'conamendment' && state.conamendment){
+              return chunk.write('<th class="' + state.status + '"><p>' + state.amendmentdetails + '</p></th>');
+            } else if(state[params.column]) {
+              return chunk.write('<th class="' + state.status + '"><p>' + state.details + '</p></th>');
+            } else {
+              return chunk.write ('<th><span class="inline_label">Not at the moment</span></th>');
+            }
+        }
+
         getMapClass: function(chunk, context, bodies, params){
-             /* params.law == this is the lawtype
-                params.state == this is the postal code of the state */
+            // params.law == this is the lawtype
+            // params.state == this is the postal code of the state
             var state = _.find(data, function(row) { 
                 //return the first row where the state name of the row is the same as the param that we passed in for state
                 return(row.postal === params.state);
             });
+
             if(state[params.column]) {
               return chunk.write(state.status);
             } else {
               return chunk.write('');
             }
-        },
+        }
         //load state law data
         allStates: data,
         allMapColumns: [
