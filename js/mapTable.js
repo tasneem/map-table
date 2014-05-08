@@ -121,7 +121,7 @@ var makeTable = function(data) {
                 return(row.state === params.state);
             });
 
-            if(params.column === 'conamendment' && state.conamendment){
+            if(params.column === 'constitutionalamendment' && state.constitutionalamendment){
               return chunk.write('<th class="' + state.status + '"><p>' + state.conamendmentdetails + '</p></th>');
             } else if(state[params.column]) {
               return chunk.write('<th class="' + state.status + '"><p>' + state.details + '</p></th>');
