@@ -20,8 +20,10 @@ table#mapTable {
     background: #f7f7f7;
 }
 
-#mapTable thead th {
+#mapTable thead th, #mapTable .mid_labels th  {
     background: #ffffff;
+    padding: 3px;
+    font-size: 12px;
 }
 
 #mapTable .state_name {
