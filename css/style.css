@@ -24,7 +24,6 @@ table#mapTable {
 #mapTable #legend {
     vertical-align: top;
 }
-
 #mapTable .swatch {
     display: block;
     width: 64px;
@@ -57,16 +56,10 @@ table#mapTable {
 	text-align: left;
     word-break: break-word;
 }
-
-#mapTable th img {
-    position:relative;
-    bottom: 0px;
-}
-
+/* style svg maps */
 #mapTable svg path {
     fill: #eeeeee;
 }
-
 #mapTable .svg_container {
     position: relative;
     padding-bottom: 62%;
@@ -77,17 +70,17 @@ table#mapTable {
     width: 75%;
     height: 75%;
 }
-
+/* hide label for n/a empty cells */
 .inline_label {
     display:none;
 }
-
+/* restrict width of state column*/
 th:nth-of-type(1) { 
     display:table-cell;
     width: 5%!Important;
 }
 
-/*
+/* optional state selector styles
 #jump_to_state select {
 
     padding-left: .5em;
