@@ -1,15 +1,20 @@
 var public_spreadsheet_url = "https://docs.google.com/spreadsheet/pub?key=0Aq7nL59nLsCMdDJxZUo4cFZaWGF5d0pSZU9XSE44NVE&output=html";
 
-var mapRow = '<thead>\
-                  <tr class="freeze_header">\
+var mapRow = '<thead class="freeze_head">\
+                  <tr>\
                      <th></th>\
                      <th>Constitutional amendment</th>\
                      <th>Court action</th>\
                      <th>Legislative action</th>\
                      <th>Popular vote</th>\
                      </tr>\
-                  <tr class="freeze_maps">\
-                     <th><img src="" /></th>\
+                  <tr>\
+                     <th id="legend">\
+                        <span class="swatch" id="legal">Legal</span>\
+                        <span class="swatch" id="limbo">In limbo</span>\
+                        <span class="swatch" id="banned">Banned</span>\
+                        <span class="swatch" id="bannedStrong">Uber-banned</span>\
+                     </th>\
                   {#allMapColumns}\
                      <th>\
                       <div class="svg_container">\
