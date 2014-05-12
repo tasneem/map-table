@@ -1,4 +1,5 @@
-table#pot_table  {
+/* generic table styles */
+table#mapTable {
     table-layout:fixed;
     padding: 0;
     overflow: hidden;
@@ -6,82 +7,80 @@ table#pot_table  {
 	margin-right: 0;
     clear: both;
     border-collapse: separate;
+    font-family: Helvetica, sans-serif;
 }
-#pot_table th {
+/* set width and style table cells */
+#mapTable th {
     white-space: normal;
     overflow:hidden;
     position: relative;
-	background-color: #EEEEEE;
-	text-align: center;
-	padding: 3px;
-	width: 30%;
-	font-size: .9em;
-	border: 1px solid white;
+	width: 20%;
+	font-size: 11px;
+    padding: 0;
+    border: 1px solid #ffffff;
+    background: #f7f7f7;
 }
-
-#pot_table .state_name {
-    font-weight: bold;
-	width: 5%;
-	padding: 0;
+/* map/table legend styles */
+#mapTable #legend {
+    vertical-align: top;
 }
-
-#pot_table p {
-	display: block;
-	line-height: 1.5em;
+#mapTable .swatch {
+    display: block;
+    width: 64px;
+    height: 12px;
+    padding: 3px;
+    font-weight:400;
+    text-align: left;
+    font-size:10px;
+}
+/* column header and repeating column header styles */
+#mapTable thead th, #mapTable .mid_labels th  {
+    background: #ffffff;
+    padding: 3px;
+    font-size: 12px;
+}
+/* state column styles */
+#mapTable .state_name {
+    width: 5%;
+    padding: 3px;
+    text-align: right;
+    color: #222222;
+}
+/* table typeface styles */
+#mapTable p {
+	display: table-cell;
 	margin: 0 auto;
 	text-transform: none;
 	font-weight: normal;
-	padding: 3px;
+	padding: 3px 3px 3px 8px;
 	text-align: left;
-	padding-left: 8px;
+    word-break: break-word;
 }
-
-#pot_table svg .good path,
-#pot_table .good, #pot_table svg path.good {
-    background-color: #7AB317;
-    fill: #7AB317;
-}
-#pot_table svg .kinda_good path,
-#pot_table .kinda_good, #pot_table svg path.kinda_good {
-    background-color: #CBE86B;
-    fill: #CBE86B;
-}
-#pot_table .harsh, #pot_table svg path.harsh,
-#pot_table svg .harsh path,
-#pot_table .penalties {
-
-}
-
-#pot_table th {
-    font-weight: bold;
-	text-align: center;
-	padding: 0;
-
-}
-#pot_table th img {
-    position:relative;
-    bottom: 0px;
-}
-
-#pot_table svg path {
+/* style svg maps */
+#mapTable svg path {
     fill: #eeeeee;
 }
-
-#pot_table .svg_container {
+#mapTable .svg_container {
     position: relative;
     padding-bottom: 62%;
     height: 0;
     overflow: hidden;
 }
-#pot_table .svg_container svg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+#mapTable .svg_container svg {
+    width: 75%;
+    height: 75%;
+}
+/* hide label for n/a empty cells */
+.inline_label {
+    display:none;
+}
+/* restrict width of state column*/
+th:nth-of-type(1) { 
+    display:table-cell;
+    width: 5%!Important;
 }
 
-/*
+/* optional state selector styles
 #jump_to_state select {
 
     padding-left: .5em;
@@ -95,7 +94,7 @@ table#pot_table  {
     text-align: center;
     color: #333315;
     width: 11.4em;
-	font-family: verdana;
+    font-family: verdana;
 
 }
 
@@ -109,50 +108,37 @@ table#pot_table  {
 }
 */
 
-.inline_label {
-    display:none;
-}
-
-th:nth-of-type(1) { 
-    display:table-cell;
-    width: 5%!Important;
-}
-
-#pot_table thead th {
-    background: transparent;
-}
 @media only screen and (max-width: 480px) {
 
-    #pot_table,
+    #mapTable,
     tbody, 
     tr, 
-    #pot_table td, 
-    #pot_table th,
-    #pot_table tbody.state_name,
-    #pot_table td.good,
-    #pot_table td.kinda_good,
-    #pot_table td.not_good,
-    #pot_table td.harsh,
-    #pot_table td.penalties  { 
+    #mapTable td, 
+    #mapTable th,
+    #mapTable tbody.state_name,
+    #mapTable th.legal,
+    #mapTable th.banned,
+    #mapTable th.limbo,
+    #mapTable th.bannedstrong { 
         display: block !important; 
         background:none;
         width: 83%!important;
         border:0;
     }
 
-    table#pot_table {
+    table#mapTable {
         width: 26em !important;
     }
 
-    #pot_table {
+    #mapTable {
         table-layout: auto;
     }
 
-    #pot_table .svg_container {
+    #mapTable .svg_container {
         padding-bottom: 0; 
     }
 
-    #pot_table th {
+    #mapTable th {
 		border: none;
 		text-align: left;
 		font-weight: normal;
@@ -161,42 +147,41 @@ th:nth-of-type(1) {
 		padding: 5px!important;
 		margin-bottom: 0px;
     }
-    th:nth-of-type(1):before { content: "State: "; font-weight: bold; }
-    th:nth-of-type(2):before { content: "Reduced Penalties? "; font-weight: bold; }
-    th:nth-of-type(3):before { content: "Medicinal: "; font-weight: bold; }
-    th:nth-of-type(4):before { content: "Recreational: "; font-weight: bold;}
+
+    th:nth-of-type(2):before { content: "Constitutional amendment:"; font-weight: bold; color: #888; }
+    th:nth-of-type(3):before { content: "Court action: "; font-weight: bold; color: #888; }
+    th:nth-of-type(4):before { content: "Legislative action: "; font-weight: bold; color: #888; }
+    th:nth-of-type(5):before { content: "Popular vote: "; font-weight: bold; color: #888; }
 	
-	#pot_table .state_name {
-	    text-transform:uppercase;;
+	#mapTable .state_name {
+        font-weight: bold;
+	    text-transform:uppercase;
+        text-align:left;
 	}
 
-    #pot_table tr {
+    #mapTable tr {
         padding-bottom: 5px;
         margin-bottom: 5px;
     }
 
-    #pot_table svg .good path,
-    #pot_table .good, #pot_table svg path.good {
+    #mapTable svg .legal, 
+    #mapTable svg .banned,
+    #mapTable svg .limbo,
+    #mapTable svg .bannedstrong {
     background-color: transparent;
-        fill: transparent;
-    }
-    
-    #pot_table svg .kinda_good path,
-    #pot_table .kinda_good, #pot_table svg path.kinda_good {
-        background-color: transparent;
         fill: transparent;
     }
 
     tr:nth-of-type(odd) { 
-        background: #eee; 
+        background: #f7f7f7; 
     }
 
-    #pot_table thead,
-    #pot_table .mid_labels {
+    #mapTable thead,
+    #mapTable .mid_labels {
         display:none!important;
     }
 
-    #pot_table p {
+    #mapTable p {
         padding: 0;
 		margin: 0!important;
     }
